@@ -14,18 +14,16 @@ class AxisView: UIView {
     
     func drawAxis(from:CGPoint, to:CGPoint) {
         let context = UIGraphicsGetCurrentContext()
-        switch (pin!.id) {
-        case "redPinA","redPinB":
+        switch pin!.id {
+        case "redPinA", "redPinB":
             CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0)
-            break
-        case "bluePinA, bluePinB":
+        case "bluePinA", "bluePinB":
             CGContextSetRGBStrokeColor(context, 0.0, 0.0, 1.0, 1.0)
-            break
         default: break
         }
         
         /* line width of axes */
-        CGContextSetLineWidth(context, 2.5)
+        CGContextSetLineWidth(context, 0.5)
         
         /* draw vertical axis inside magnifier */
         CGContextMoveToPoint(context, from.x, from.y)
@@ -37,7 +35,7 @@ class AxisView: UIView {
     
     override func drawRect(rect: CGRect) {
         if pin != nil {
-            drawAxis(CGPointMake((pin?.center.x)!, frame.origin.y), to: CGPointMake(pin!.center.x, frame.origin.y + frame.height))
+            drawAxis(CGPointMake(pin!.center.x, frame.origin.y), to: CGPointMake(pin!.center.x, frame.origin.y + frame.height))
         }
     }
     
@@ -133,6 +131,6 @@ class ViewController: UIViewController {
         scrollView.addSubview(bluePinA)
         scrollView.addSubview(bluePinB)
     }
-
+    
 }
 
